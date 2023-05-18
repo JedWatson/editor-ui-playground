@@ -1,6 +1,7 @@
-import { PlusIcon } from '@radix-ui/react-icons';
+import { PlusIcon, SectionIcon } from '@radix-ui/react-icons';
 
-import { Editor, Content } from '@/components/editor';
+import { Editor, Content, Markdoc, AuthorNote } from '@/components/editor';
+import { Paragraph } from '@/components/content';
 import {
   TagBoundary,
   TagName,
@@ -64,10 +65,6 @@ function Heading({
   );
 }
 
-function Paragraph({ children }: { children: React.ReactNode }) {
-  return <div className="my-4">{children}</div>;
-}
-
 function CTA({ children }: { children: React.ReactNode }) {
   return (
     <TagBoundary>
@@ -93,7 +90,15 @@ function CTALink({ children }: { children: React.ReactNode }) {
 }
 
 function HR() {
-  return <hr className="h-0.5 bg-gray-300 my-8 border-0" />;
+  return (
+    <div className="my-8">
+      <div className="mb-1 flex items-center gap-2 text-slate-500">
+        <SectionIcon />
+        <TagButton>kind: sparkles</TagButton>
+      </div>
+      <hr className="h-0.5 bg-gray-300 border-0" />
+    </div>
+  );
 }
 
 function Grid({ children }: { children: React.ReactNode }) {
@@ -155,7 +160,10 @@ export default function TagsEditor() {
       <Editor>
         <Content>
           <Eyebrow>Design Systems</Eyebrow>
-          <Heading>More design systems experience than most.</Heading>
+          <Heading>
+            More design systems experience than{' '}
+            <span className="line-through">anyone</span> most.
+          </Heading>
           <Paragraph>
             With real-world, at-scale experience that few teams can match, we’ve
             led, shaped, and contributed to over a dozen design systems. From
@@ -224,6 +232,88 @@ export default function TagsEditor() {
           </Grid>
         </Content>
       </Editor>
+      <AuthorNote>
+        I&rsquo;m still working on aligning the content in the editor above and
+        the markdoc below. The content above is incomplete, but the markdoc
+        source may need some changes too.
+      </AuthorNote>
+      <Markdoc content={markdoc} />
     </MainWrapper>
   );
 }
+
+const markdoc = `
+{% hero %}
+
+Design systems {% .suptitle %}
+
+# More design systems experience than ~~anyone~~ most.
+
+With real-world, at-scale experience that few teams can match, we've led,
+shaped, and contributed to over a dozen design systems. From startups and
+scale-ups, to Atlassian and the Australian Government. We can bring our
+experience to your design system efforts.
+
+{% /hero %}
+
+{% callout %}
+
+Need design systems help?
+
+[Get in touch](/some/path)
+
+{% /callout %}
+
+--- {% kind="sparkles" %}
+
+We've been there before {% .suptitle %}
+
+## Design Systems Experience
+
+{% grid %}
+
+{% client-grid-item href="/some-path" image="atlassian-image.png" imageAlt="blah" %}
+
+{% slot "heading" %}
+Atlassian Design System
+{% /slot %}
+
+We were there at the start of Atlassian's design system initiative.
+
+{% /client-grid-item %}
+
+{% /grid %}
+
+{% testimonial name="Dominik Wilkowski" title="Eng. Lead - Shopify Polaris Design System" avatar="..." %}
+
+There are very few teams you can hire with more real-world, at-scale Design System experience than Thinkmill.
+
+{% /testimonial %}
+
+## We can help with
+
+{% grid %}
+<!-- icon is a relationshop to an icons collection -->
+{% something-grid-item icon="pencil" %}
+
+{% slot "heading" %}
+Design & Engineering
+{% /slot %}
+
+We can help you fill [capacity and capability gaps](a) and build better ways of collaborating across the two practices.
+
+{% /something-grid-item %}
+
+{% /grid %}
+
+{% callout %}
+
+![boris](boris.png)
+
+## Get in touch about design systems
+
+Have a chat with Boris, Thinkmill's co-founder, about how we can help your journey in design systems - whether you're starting out or enhancing a mature design system.
+
+[Contact us](/some/path)
+
+{% /callout %}`;

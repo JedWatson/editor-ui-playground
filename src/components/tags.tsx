@@ -29,7 +29,13 @@ function useCurrentTag(_id?: string) {
   };
 }
 
-export function TagBoundary({ children }: { children: React.ReactNode }) {
+export function TagBoundary({
+  children,
+  border: _border,
+}: {
+  children: React.ReactNode;
+  border?: 'normal' | 'strong';
+}) {
   const id = useId();
   const pc = useContext(tagContext);
   const parents = pc.id ? [...pc.parents, pc.id] : [];
@@ -43,6 +49,23 @@ export function TagBoundary({ children }: { children: React.ReactNode }) {
     currentTag.setState({});
     e.stopPropagation();
   };
+  const borderColor = isCurrent
+    ? _border === 'strong'
+      ? 'border-sky-500'
+      : 'border-sky-400'
+    : isParent
+    ? _border === 'strong'
+      ? 'border-slate-300'
+      : 'border-sky-200'
+    : _border === 'strong'
+    ? 'border-slate-200'
+    : 'border-slate-100';
+
+  const border = {
+    normal: 'border',
+    strong: 'border-2',
+  }[_border || 'normal'];
+
   return (
     <tagContext.Provider
       value={{
@@ -51,13 +74,7 @@ export function TagBoundary({ children }: { children: React.ReactNode }) {
       }}
     >
       <div
-        className={`group border ${
-          isCurrent
-            ? 'border-sky-400'
-            : isParent
-            ? 'border-sky-200'
-            : 'border-slate-100'
-        } transition-colors rounded-md`}
+        className={`group ${border} ${borderColor} transition-colors rounded-md mb-4`}
         onMouseOver={mouseOver}
         onMouseOut={onMouseOut}
       >

@@ -1,5 +1,95 @@
-import { Editor, Content } from '@/components/editor';
+import { CubeIcon } from '@radix-ui/react-icons';
+
+import { Paragraph, Quote } from '@/components/content';
+import { Editor, Content, Markdoc, AuthorNote } from '@/components/editor';
 import { Back, MainWrapper } from '@/components/site';
+import {
+  TagBoundary,
+  TagButton,
+  TagContent,
+  TagDropdown,
+  TagName,
+  TagProperty,
+  TagToolbar,
+} from '@/components/tags';
+
+function Section({
+  children,
+  cls,
+}: {
+  children: React.ReactNode;
+  cls?: string;
+}) {
+  return (
+    <TagBoundary>
+      <div className="flex">
+        <TagName>Section</TagName>
+        <TagToolbar>
+          <TagButton>{cls}</TagButton>
+          <TagDropdown />
+        </TagToolbar>
+      </div>
+      <TagContent>{children}</TagContent>
+    </TagBoundary>
+  );
+}
+
+function Include({ name, attrs }: { name: string; attrs?: any }) {
+  return (
+    <TagBoundary border="strong">
+      <div className="p-4 flex items-center gap-3 rounded-md bg-slate-50 cursor-default">
+        <CubeIcon />
+        <div className="font-mono text-slate-800">{name}</div>
+        {attrs && (
+          <div className="font-mono text-sm text-slate-500">
+            {JSON.stringify(attrs)}
+          </div>
+        )}
+      </div>
+    </TagBoundary>
+  );
+}
+
+function Link({ children, href }: { children: React.ReactNode; href: string }) {
+  return (
+    <span className="text-sky-800 underline" title={href}>
+      {children}
+    </span>
+  );
+}
+
+export default function MarkdocEditor() {
+  return (
+    <MainWrapper>
+      <Back />
+      <Editor>
+        <Content>
+          <Section cls=".hero">
+            <Include name="typewriter" />
+            <Quote>
+              From personal blogs to massive documentation sites, Markdoc is a
+              content authoring system that grows with you.
+            </Quote>
+            <Paragraph cls=".primary">
+              <Link href="/docs/getting-started">View docs</Link>
+            </Paragraph>
+          </Section>
+          <Section cls=".try .no-mobile">
+            <Include
+              name="sandbox"
+              attrs={{ height: '360px', options: { scrollbarStyle: null } }}
+            />
+          </Section>
+        </Content>
+      </Editor>
+      <AuthorNote>
+        I&rsquo;m still working on converting the markdoc source into editor
+        components
+      </AuthorNote>
+      <Markdoc content={markdoc} />
+    </MainWrapper>
+  );
+}
 
 const markdoc = `
 {% section .hero %}
@@ -152,16 +242,3 @@ expressive, custom documentation.
 {% /features %}
 
 {% /section %}`;
-
-export default function MarkdocEditor() {
-  return (
-    <MainWrapper>
-      <Back />
-      <Editor>
-        <Content>
-          <pre dangerouslySetInnerHTML={{ __html: markdoc }} />
-        </Content>
-      </Editor>
-    </MainWrapper>
-  );
-}
