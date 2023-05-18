@@ -1,7 +1,17 @@
-import { RiAddLine, RiArrowDownSLine } from 'react-icons/ri';
+import { PlusIcon } from '@radix-ui/react-icons';
 
-import { Toolbar } from './toolbar';
-import { cls } from './cls';
+import { Editor } from '@/components/editor';
+import {
+  TagBoundary,
+  TagName,
+  TagToolbar,
+  TagButton,
+  TagDropdown,
+  TagProperty,
+  TagContent,
+  TagContentButton,
+} from '@/components/tags';
+import { Back, MainWrapper } from '@/components/site';
 
 function Content({ children }: { children: React.ReactNode }) {
   return <div className="p-6">{children}</div>;
@@ -52,11 +62,9 @@ function Heading({
     '3': 'text-2xl',
     '4': 'text-xl',
   }[level || '1'];
-  const Tag = `h${level || 1}` as keyof JSX.IntrinsicElements;
+  const H = `h${level || 1}` as keyof JSX.IntrinsicElements;
   return (
-    <Tag className={`my-6 font-semibold ${textSize} ${textAlign}`}>
-      {children}
-    </Tag>
+    <H className={`my-6 font-semibold ${textSize} ${textAlign}`}>{children}</H>
   );
 }
 
@@ -64,88 +72,19 @@ function Paragraph({ children }: { children: React.ReactNode }) {
   return <div className="my-4">{children}</div>;
 }
 
-function ComponentBoundary({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="border border-slate-100 hover:border-sky-400 transition-colors rounded-md">
-      {children}
-    </div>
-  );
-}
-
-function ComponentName({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="uppercase font-semibold inline-block py-1 px-3 mr-1 text-sm bg-slate-100 rounded-br-md rounded-tl-md text-slate-500">
-      {children}
-    </div>
-  );
-}
-
-function ComponentToolbar({ children }: { children: React.ReactNode }) {
-  return <div className="grid grid-flow-col">{children}</div>;
-}
-
-function ComponentButton({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="m-1 px-1 rounded flex items-center justify-center text-sm bg-slate-50 text-slate-500 font-medium">
-      {children}
-    </div>
-  );
-}
-
-function ComponentProperty({
-  children,
-  label,
-}: {
-  children: React.ReactNode;
-  label: string;
-}) {
-  return (
-    <div className="mx-2 mt-2">
-      <ComponentPropertyLabel>{label}</ComponentPropertyLabel>
-      <ComponentPropertyValue>{children}</ComponentPropertyValue>
-    </div>
-  );
-}
-function ComponentPropertyLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="mx-1 uppercase text-xs font-semibold text-slate-400">
-      {children}
-    </div>
-  );
-}
-function ComponentPropertyValue({ children }: { children: React.ReactNode }) {
-  return <div className="mx-1">{children}</div>;
-}
-
-function ComponentContent({
-  children,
-  border,
-}: {
-  children: React.ReactNode;
-  border?: boolean;
-}) {
-  return (
-    <div className={`mx-3 my-3 ${border ? 'border-t pt-3' : ''}`}>
-      {children}
-    </div>
-  );
-}
-
 function CTA({ children }: { children: React.ReactNode }) {
   return (
-    <ComponentBoundary>
+    <TagBoundary>
       <div className="flex">
-        <ComponentName>Call To Action</ComponentName>
-        <ComponentToolbar>
-          <ComponentButton>align: end</ComponentButton>
-          <ComponentButton>.hero</ComponentButton>
-          <ComponentButton>
-            <RiArrowDownSLine />
-          </ComponentButton>
-        </ComponentToolbar>
+        <TagName>Call To Action</TagName>
+        <TagToolbar>
+          <TagButton>align: end</TagButton>
+          <TagButton>.hero</TagButton>
+          <TagDropdown />
+        </TagToolbar>
       </div>
-      <ComponentContent>{children}</ComponentContent>
-    </ComponentBoundary>
+      <TagContent>{children}</TagContent>
+    </TagBoundary>
   );
 }
 
@@ -163,27 +102,23 @@ function HR() {
 
 function Grid({ children }: { children: React.ReactNode }) {
   return (
-    <ComponentBoundary>
+    <TagBoundary>
       <div className="flex">
-        <ComponentName>Grid</ComponentName>
-        <ComponentToolbar>
-          <ComponentButton>columns: 3</ComponentButton>
-          <ComponentButton>
-            <RiArrowDownSLine />
-          </ComponentButton>
-        </ComponentToolbar>
+        <TagName>Grid</TagName>
+        <TagToolbar>
+          <TagButton>columns: 3</TagButton>
+          <TagDropdown />
+        </TagToolbar>
       </div>
       <div className="my-4 px-3 grid grid-cols-3 grid-flow-row gap-4">
         {children}
-        <div className="">
-          <div className="p-2 text-sm rounded-md bg-slate-50 hover:bg-sky-100 text-slate-500 hover:text-sky-600 cursor-pointer uppercase font-semibold">
-            <div className="flex items-center justify-center">
-              <RiAddLine className="mr-2" /> Add Cell
-            </div>
-          </div>
+        <div>
+          <TagContentButton>
+            <PlusIcon className="mr-2" /> Add Cell
+          </TagContentButton>
         </div>
       </div>
-    </ComponentBoundary>
+    </TagBoundary>
   );
 }
 
@@ -207,23 +142,21 @@ function ClientCell({
   heading: string;
 }) {
   return (
-    <ComponentBoundary>
-      <ComponentName>Client Cell</ComponentName>
-      <ComponentProperty label="href">{href}</ComponentProperty>
-      <ComponentProperty label="imageAlt">{imageAlt}</ComponentProperty>
-      <ComponentProperty label="heading">{heading}</ComponentProperty>
-      <ComponentContent border>{children}</ComponentContent>
-    </ComponentBoundary>
+    <TagBoundary>
+      <TagName>Client Cell</TagName>
+      <TagProperty label="href">{href}</TagProperty>
+      <TagProperty label="imageAlt">{imageAlt}</TagProperty>
+      <TagProperty label="heading">{heading}</TagProperty>
+      <TagContent border>{children}</TagContent>
+    </TagBoundary>
   );
 }
 
 export default function TagsEditor() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div
-        className={`w-full max-w-5xl items-center border ${cls.border} rounded-lg shadow-md shadow-slate-100`}
-      >
-        <Toolbar />
+    <MainWrapper>
+      <Back />
+      <Editor>
         <Content>
           <Eyebrow>Design Systems</Eyebrow>
           <Heading>More design systems experience than most.</Heading>
@@ -294,7 +227,7 @@ export default function TagsEditor() {
             </GridCell>
           </Grid>
         </Content>
-      </div>
-    </main>
+      </Editor>
+    </MainWrapper>
   );
 }
