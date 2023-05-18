@@ -1,38 +1,9 @@
 import { CubeIcon } from '@radix-ui/react-icons';
 
-import { Paragraph, Quote } from '@/components/content';
+import { Link, Paragraph, Quote, Tag } from '@/components/content';
 import { Editor, Content, Markdoc, AuthorNote } from '@/components/editor';
 import { Back, MainWrapper } from '@/components/site';
-import {
-  TagBoundary,
-  TagButton,
-  TagContent,
-  TagDropdown,
-  TagName,
-  TagProperty,
-  TagToolbar,
-} from '@/components/tags';
-
-function Section({
-  children,
-  cls,
-}: {
-  children: React.ReactNode;
-  cls?: string;
-}) {
-  return (
-    <TagBoundary>
-      <div className="flex">
-        <TagName>Section</TagName>
-        <TagToolbar>
-          <TagButton>{cls}</TagButton>
-          <TagDropdown />
-        </TagToolbar>
-      </div>
-      <TagContent>{children}</TagContent>
-    </TagBoundary>
-  );
-}
+import { TagBoundary } from '@/components/tags';
 
 function Include({ name, attrs }: { name: string; attrs?: any }) {
   return (
@@ -50,21 +21,13 @@ function Include({ name, attrs }: { name: string; attrs?: any }) {
   );
 }
 
-function Link({ children, href }: { children: React.ReactNode; href: string }) {
-  return (
-    <span className="text-sky-800 underline" title={href}>
-      {children}
-    </span>
-  );
-}
-
 export default function MarkdocEditor() {
   return (
     <MainWrapper>
       <Back />
       <Editor>
         <Content>
-          <Section cls=".hero">
+          <Tag name="section" attrs={['.hero']}>
             <Include name="typewriter" />
             <Quote>
               From personal blogs to massive documentation sites, Markdoc is a
@@ -73,13 +36,13 @@ export default function MarkdocEditor() {
             <Paragraph cls=".primary">
               <Link href="/docs/getting-started">View docs</Link>
             </Paragraph>
-          </Section>
-          <Section cls=".try .no-mobile">
+          </Tag>
+          <Tag name="section" attrs={['.try', '.no-mobile']}>
             <Include
               name="sandbox"
               attrs={{ height: '360px', options: { scrollbarStyle: null } }}
             />
-          </Section>
+          </Tag>
         </Content>
       </Editor>
       <AuthorNote>

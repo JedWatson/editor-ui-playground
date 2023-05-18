@@ -1,7 +1,7 @@
 import { PlusIcon, SectionIcon } from '@radix-ui/react-icons';
 
 import { Editor, Content, Markdoc, AuthorNote } from '@/components/editor';
-import { Paragraph } from '@/components/content';
+import { Link, Paragraph, Tag } from '@/components/content';
 import {
   TagBoundary,
   TagName,
@@ -63,30 +63,6 @@ function Heading({
   return (
     <H className={`my-6 font-semibold ${textSize} ${textAlign}`}>{children}</H>
   );
-}
-
-function CTA({ children }: { children: React.ReactNode }) {
-  return (
-    <TagBoundary>
-      <div className="flex">
-        <TagName>Call To Action</TagName>
-        <TagToolbar>
-          <TagButton>align: end</TagButton>
-          <TagButton>.hero</TagButton>
-          <TagDropdown />
-        </TagToolbar>
-      </div>
-      <TagContent>{children}</TagContent>
-    </TagBoundary>
-  );
-}
-
-function CTAText({ children }: { children: React.ReactNode }) {
-  return <div className="my-2">{children}</div>;
-}
-
-function CTALink({ children }: { children: React.ReactNode }) {
-  return <div className="my-2 text-sky-800 underline">{children}</div>;
 }
 
 function HR() {
@@ -159,21 +135,26 @@ export default function TagsEditor() {
       <Back />
       <Editor>
         <Content>
-          <Eyebrow>Design Systems</Eyebrow>
-          <Heading>
-            More design systems experience than{' '}
-            <span className="line-through">anyone</span> most.
-          </Heading>
-          <Paragraph>
-            With real-world, at-scale experience that few teams can match, we’ve
-            led, shaped, and contributed to over a dozen design systems. From
-            startups and scale-ups, to Atlassian and the Australian Government.
-            We can bring our experience to your design system efforts.
-          </Paragraph>
-          <CTA>
-            <CTAText>Need Design Systems help?</CTAText>
-            <CTALink>Get in touch</CTALink>
-          </CTA>
+          <Tag name="hero">
+            <Eyebrow>Design Systems</Eyebrow>
+            <Heading>
+              More design systems experience than{' '}
+              <span className="line-through">anyone</span> most.
+            </Heading>
+            <Paragraph>
+              With real-world, at-scale experience that few teams can match,
+              we’ve led, shaped, and contributed to over a dozen design systems.
+              From startups and scale-ups, to Atlassian and the Australian
+              Government. We can bring our experience to your design system
+              efforts.
+            </Paragraph>
+          </Tag>
+          <Tag name="callout">
+            <Paragraph>Need Design Systems help?</Paragraph>
+            <Paragraph>
+              <Link href="#">Get in touch</Link>
+            </Paragraph>
+          </Tag>
           <HR />
           <Eyebrow size="small" align="center">
             We&lsquo;ve been there before
