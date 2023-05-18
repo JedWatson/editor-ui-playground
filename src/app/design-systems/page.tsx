@@ -1,6 +1,6 @@
 import { PlusIcon } from '@radix-ui/react-icons';
 
-import { Editor } from '@/components/editor';
+import { Editor, Content } from '@/components/editor';
 import {
   TagBoundary,
   TagName,
@@ -12,10 +12,6 @@ import {
   TagContentButton,
 } from '@/components/tags';
 import { Back, MainWrapper } from '@/components/site';
-
-function Content({ children }: { children: React.ReactNode }) {
-  return <div className="p-6">{children}</div>;
-}
 
 function Eyebrow({
   children,

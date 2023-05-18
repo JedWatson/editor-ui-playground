@@ -22,3 +22,7 @@ export function Editor({ children }: { children: React.ReactNode }) {
     </currentTagContext.Provider>
   );
 }
+
+export function Content({ children }: { children: React.ReactNode }) {
+  return <div className="p-6">{children}</div>;
+}
