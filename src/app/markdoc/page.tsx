@@ -8,7 +8,10 @@ import { TagBoundary } from '@/components/tags';
 function Include({ name, attrs }: { name: string; attrs?: any }) {
   return (
     <TagBoundary border="strong">
-      <div className="p-4 flex items-center gap-3 rounded-md bg-slate-50 cursor-default">
+      <div
+        contentEditable={false}
+        className="p-4 flex items-center gap-3 rounded-md bg-slate-50 cursor-default"
+      >
         <CubeIcon />
         <div className="font-mono text-slate-800">{name}</div>
         {attrs && (
@@ -42,6 +45,9 @@ export default function MarkdocEditor() {
               name="sandbox"
               attrs={{ height: '360px', options: { scrollbarStyle: null } }}
             />
+          </Tag>
+          <Tag name="Boris" attrs={['role: co-ceo']}>
+            Some content in the tag
           </Tag>
         </Content>
       </Editor>

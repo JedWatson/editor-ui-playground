@@ -1,4 +1,4 @@
-import { PlusIcon, SectionIcon } from '@radix-ui/react-icons';
+import { HeadingIcon, PlusIcon, SectionIcon } from '@radix-ui/react-icons';
 
 import { Editor, Content, Markdoc, AuthorNote } from '@/components/editor';
 import { Link, Paragraph, Tag } from '@/components/content';
@@ -33,9 +33,12 @@ function Eyebrow({
     small: 'text-lg',
   }[size || 'normal'];
   return (
-    <div className={`mt-2 -mb-2 font-semibold ${textSize} ${textAlign}`}>
-      {children}
-    </div>
+    <TagBoundary>
+      <TagName>Eyebrow</TagName>
+      <div className={`mb-2 font-semibold ${textSize} ${textAlign}`}>
+        {children}
+      </div>
+    </TagBoundary>
   );
 }
 
@@ -61,7 +64,14 @@ function Heading({
   }[level || '1'];
   const H = `h${level || 1}` as keyof JSX.IntrinsicElements;
   return (
-    <H className={`my-6 font-semibold ${textSize} ${textAlign}`}>{children}</H>
+    <div className="my-6">
+      <div className="mb-1 flex items-center gap-2 text-slate-500">
+        <HeadingIcon />
+        {level && <TagButton>level: {level}</TagButton>}
+        {align && <TagButton>align: {align}</TagButton>}
+      </div>
+      <H className={`font-semibold ${textSize} ${textAlign}`}>{children}</H>
+    </div>
   );
 }
 
@@ -87,7 +97,7 @@ function Grid({ children }: { children: React.ReactNode }) {
           <TagDropdown />
         </TagToolbar>
       </div>
-      <div className="my-4 px-3 grid grid-cols-3 grid-flow-row gap-4">
+      <div className="my-4 px-3 md:grid lg:grid-cols-3 md:grid-cols-2 md:grid-flow-row gap-4">
         {children}
         <div>
           <TagContentButton>

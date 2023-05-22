@@ -92,6 +92,7 @@ export function TagName({ children }: { children: React.ReactNode }) {
       : 'bg-slate-50  text-slate-400';
   return (
     <div
+      contentEditable={false}
       className={`uppercase font-semibold inline-block py-1 px-3 mr-1 text-sm rounded-br-md rounded-tl-md ${colors} transition-colors`}
     >
       {children}
@@ -116,6 +117,7 @@ export function TagDropdown() {
   const opacity = isCurrent ? 'opacity-100' : 'opacity-0';
   return (
     <div
+      contentEditable={false}
       className={`m-1 px-1 rounded flex items-center justify-center text-sm ${opacity} bg-slate-50 hover:bg-sky-100 text-slate-500 hover:text-sky-600 transition-all cursor-pointer font-medium`}
     >
       <ChevronDownIcon />

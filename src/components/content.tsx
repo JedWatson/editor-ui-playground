@@ -43,7 +43,7 @@ export function Paragraph({
   cls?: string;
 }) {
   return cls ? (
-    <div className="my-4 pl-3 py-1 border-l-4">
+    <div className="my-4 py-1">
       <div className="mb-1 flex items-center gap-2 text-slate-500">
         <ReaderIcon />
         <TagButton>{cls}</TagButton>
@@ -58,9 +58,9 @@ export function Paragraph({
 export function Quote({ children }: { children: React.ReactNode }) {
   return (
     <div className="my-4 pl-3 py-1 border-l-4">
-      <div className="mb-1 flex items-center gap-2 text-slate-500">
+      {/* <div className="mb-1 flex items-center gap-2 text-slate-500">
         <QuoteIcon />
-      </div>
+      </div> */}
       {children}
     </div>
   );

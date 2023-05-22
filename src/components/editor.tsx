@@ -24,7 +24,15 @@ export function Editor({ children }: { children: React.ReactNode }) {
 }
 
 export function Content({ children }: { children: React.ReactNode }) {
-  return <div className="p-6">{children}</div>;
+  return (
+    <div
+      className="p-6 outline-none"
+      contentEditable
+      suppressContentEditableWarning
+    >
+      {children}
+    </div>
+  );
 }
 
 export function AuthorNote({ children }: { children: React.ReactNode }) {
