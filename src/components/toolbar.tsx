@@ -2,6 +2,9 @@ import {
   ChevronDownIcon,
   FontBoldIcon,
   FontItalicIcon,
+  TextAlignLeftIcon,
+  TextAlignCenterIcon,
+  TextAlignRightIcon,
 } from '@radix-ui/react-icons';
 
 import { cls } from './cls';
@@ -31,6 +34,16 @@ export function Toolbar() {
         </Button>
         <Button>
           <FontItalicIcon className="text-base" />
+        </Button>
+        <div className="mx-2 border-l" />
+        <Button>
+          <TextAlignLeftIcon className="text-base" />
+        </Button>
+        <Button>
+          <TextAlignCenterIcon className="text-base" />
+        </Button>
+        <Button>
+          <TextAlignRightIcon className="text-base" />
         </Button>
       </div>
     </div>

@@ -10,7 +10,7 @@ function Include({ name, attrs }: { name: string; attrs?: any }) {
     <TagBoundary border="strong">
       <div
         contentEditable={false}
-        className="p-4 flex items-center gap-3 rounded-md bg-slate-50 cursor-default"
+        className="flex cursor-default items-center gap-3 rounded-md bg-slate-50 p-4"
       >
         <CubeIcon />
         <div className="font-mono text-slate-800">{name}</div>
