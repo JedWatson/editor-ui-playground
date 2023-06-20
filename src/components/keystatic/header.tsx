@@ -1,4 +1,4 @@
-import { ChevronsUpDown, GitBranch, Zap } from 'lucide-react';
+import { ChevronsUpDown, GitBranch, Zap, Book, BookCopy } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -25,8 +25,10 @@ function Drilldown() {
   return (
     <div className="flex items-center gap-2">
       <div className="font-mono text-sm text-slate-400">/</div>
+      <BookCopy size={16} />
       <div>Thinkmill</div>
       <div className="font-mono text-sm text-slate-400">/</div>
+      <Book size={16} />
       <div>Website</div>
       <ChevronsUpDown size={16} />
       <div className="font-mono text-sm text-slate-400">/</div>

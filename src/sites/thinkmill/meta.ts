@@ -60,7 +60,20 @@ export const nav = addSlugs({
     },
     {
       label: 'Content',
-      items: [{ label: 'Blog', kind: 'collection' }],
+      items: [
+        { label: 'Blog', kind: 'collection' },
+        { label: 'News', kind: 'collection' },
+        { label: 'Projects', kind: 'collection' },
+      ],
+    },
+    {
+      label: 'Site',
+      items: [
+        { label: 'Tags', kind: 'collection' },
+        { label: 'Authors', kind: 'collection' },
+        { label: 'Footer', kind: 'entry' },
+        { label: 'Settings', kind: 'entry' },
+      ],
     },
   ],
 });
