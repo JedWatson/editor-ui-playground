@@ -40,6 +40,11 @@ function Card({
   const linkStyles = `
   font-medium outline-none focus:outline-none hover:text-sky-700
   `;
+  const buttonStyles = `
+  relative flex h-8 w-8 items-center justify-center rounded-md border border-slate-300 bg-slate-50 p-1 shadow-sm outline-offset-2
+  hover:border-emerald-500 hover:bg-emerald-50
+  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
+  `;
   return (
     <div className="relative flex justify-between p-4">
       <div>
@@ -57,10 +62,7 @@ function Card({
       </div>
 
       {add ? (
-        <a
-          href="#"
-          className="relative flex h-8 w-8 items-center justify-center rounded-md border border-slate-300 bg-slate-50 p-1 shadow-sm outline-offset-2 hover:border-emerald-500 hover:bg-emerald-50"
-        >
+        <a href="#" className={buttonStyles}>
           <Plus width="16" />
         </a>
       ) : null}
