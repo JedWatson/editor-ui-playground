@@ -1,3 +1,5 @@
+import { fields } from '../../fields';
+
 export const config = {
   markdoc: {
     tags: {},
@@ -31,7 +33,7 @@ export const config = {
       }),
       {
         label: 'Authors',
-        itemLabel: (props) => props.value ?? 'Please select',
+        itemLabel: (props: any) => props.value ?? 'Please select',
       }
     ),
     tags: fields.array(
@@ -42,7 +44,7 @@ export const config = {
       }),
       {
         label: 'Tags',
-        itemLabel: (props) => props.value ?? 'Please select',
+        itemLabel: (props: any) => props.value ?? 'Please select',
       }
     ),
     canonical: fields.text({
