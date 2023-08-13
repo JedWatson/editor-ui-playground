@@ -1,8 +1,6 @@
 import { Plus } from 'lucide-react';
 
-function Header({ children }: { children: React.ReactNode }) {
-  return <div className="border-b px-8 py-4 font-semibold">{children}</div>;
-}
+import { Header } from './components';
 
 function Section({
   label,
@@ -45,7 +43,10 @@ function Card({
   return (
     <div className="relative flex justify-between p-4">
       <div>
-        <a href="#" className={`block ${linkStyles} ${cardStyles}`}>
+        <a
+          href="/keystatic/list"
+          className={`block ${linkStyles} ${cardStyles}`}
+        >
           {label}
         </a>
         {count ? (
@@ -70,7 +71,7 @@ function Card({
 export default function Page() {
   return (
     <>
-      <Header>Dashboard</Header>
+      <Header title="Dashboard" />
       <Section label="Collections">
         <Card label="Docs pages" count={33} add />
         <Card label="Blog posts" count={1} add />

@@ -1,5 +1,5 @@
-import { Header } from '@/components/keystatic/header';
-import { Sidebar } from '@/components/keystatic/sidebar';
+import { Header } from './header';
+import { Sidebar } from './sidebar';
 
 export default function KeystaticLayout({
   children,
