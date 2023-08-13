@@ -11,12 +11,16 @@ function Section({
   label,
   children,
 }: {
-  label: string;
+  label?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="m-4 mb-6">
-      <div className="mb-2 font-medium uppercase text-slate-500">{label}</div>
+      {label && (
+        <div className="my-1 select-none font-medium uppercase text-slate-500">
+          {label}
+        </div>
+      )}
       {children}
     </div>
   );
@@ -39,7 +43,7 @@ function Item({
   return (
     <div
       className={m(
-        `mb-1 flex items-center gap-2 rounded-md border border-transparent py-1`,
+        `mb-1 flex select-none items-center gap-2 rounded-md border border-transparent px-2 py-1`,
         selectedStyles
       )}
       onClick={onClick}
@@ -66,7 +70,7 @@ function Group({
   return (
     <>
       <div
-        className="mb-2 flex cursor-pointer items-center gap-2 text-base font-medium"
+        className="mb-2 flex cursor-pointer items-center gap-2 border border-transparent px-2 text-base font-medium"
         onClick={() => setOpen(!open)}
       >
         {open ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
@@ -83,8 +87,8 @@ export function Sidebar() {
     'thinkmill-nav-selected-item'
   );
   return (
-    <ScrollArea className="w-96 border-r bg-slate-50">
-      <div className="px-4 pt-4">
+    <ScrollArea className="w-80 border-r bg-slate-50">
+      <Section>
         <Item
           icon={Home}
           isSelected={selectedItem === 'dashboard'}
@@ -92,7 +96,7 @@ export function Sidebar() {
         >
           Dashboard
         </Item>
-      </div>
+      </Section>
       {nav.sections.map((section) => (
         <Section key={section.label} label={section.label}>
           {section.items?.map((item) => {

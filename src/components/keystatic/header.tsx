@@ -23,7 +23,7 @@ function Logo() {
 
 function Drilldown() {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex select-none items-center gap-2">
       <div className="font-mono text-sm text-slate-400">/</div>
       <BookCopy size={16} />
       <div>Thinkmill</div>
