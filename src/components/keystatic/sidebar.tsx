@@ -43,7 +43,7 @@ function Item({
   return (
     <div
       className={m(
-        `mb-1 flex select-none items-center gap-2 rounded-md border border-transparent px-2 py-1`,
+        `mb-px flex select-none items-center gap-2 rounded-md border border-transparent px-2 py-1`,
         selectedStyles
       )}
       onClick={onClick}
@@ -70,7 +70,7 @@ function Group({
   return (
     <>
       <div
-        className="mb-2 flex cursor-pointer items-center gap-2 border border-transparent px-2 text-base font-medium"
+        className="my-1 flex cursor-pointer items-center gap-2 border border-transparent px-2 font-medium"
         onClick={() => setOpen(!open)}
       >
         {open ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
@@ -87,7 +87,7 @@ export function Sidebar() {
     'thinkmill-nav-selected-item'
   );
   return (
-    <ScrollArea className="w-80 border-r bg-slate-50">
+    <ScrollArea className="w-80 border-r bg-slate-50 text-sm">
       <Section>
         <Item
           icon={Home}
