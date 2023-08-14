@@ -35,7 +35,7 @@ function Row({
   group cursor-pointer text-sm outline-none
   ${
     alt
-      ? `mx-7 px-1 rounded hover:bg-slate-50 focus-visible:before:absolute focus-visible:before:w-1 focus-visible:before:h-[80%] focus-visible:before:rounded focus-visible:before:top-[10%] focus-visible:before:-left-1 focus-visible:before:bg-blue-500`
+      ? `mx-7 px-px rounded hover:bg-slate-50 focus-visible:before:absolute focus-visible:before:w-1 focus-visible:before:h-[80%] focus-visible:before:rounded focus-visible:before:top-[10%] focus-visible:before:-left-1 focus-visible:before:bg-blue-500`
       : `rounded mx-6 px-2 focus-visible:ring focus-visible:ring-ring focus-visible:ring-[2px] focus-visible:ring-offset-0 !ring-blue-500`
   }
   `;
